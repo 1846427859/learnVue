@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>通过属性绑定为元素设置style样式</title>
+	<script type="text/javascript" src="vue2.0.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h1 :style="{ 'color':'red', 'font-weight': 200}">这是一个善良的人！</h1>
+		<h1 :style="styleClass1">这是一个善良的人！</h1>
+		<h1 :style="[styleClass1, styleClass2]">这是一个善良的人！</h1>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				styleClass1: { 'color':'red', 'font-weight': 200 },
+				styleClass2: { 'font-style': 'italic', 'letter-spacing': '0.5em' }
+			}
+		})
+	</script>
+</body>
+</html>

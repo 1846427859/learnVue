@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>通过属性绑定为元素设置class样式</title>
+	<script type="text/javascript" src="vue2.0.js"></script>
+	<style type="text/css">
+		.red {
+			color: red;
+		}
+		.thin {
+			font-weight: 200;
+		}
+		.italic {
+			font-size: italic;
+		}
+		.active {
+			letter-spacing: 0.5em;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- 使用数组 -->
+		<h1 :class="['red', 'thin']">这是一个很大很大的h1，打到你无法想象！</h1>
+		<!-- 使用三元表达式 -->
+		<h1 :class="['red', 'thin', flag ? 'active' : '']">这是一个很大很大的h1，打到你无法想象！</h1>
+		<!-- 使用对象 -->
+		<h1 :class="['red', 'thin', {'active' : flag}]">这是一个很大很大的h1，打到你无法想象！</h1>
+		<!-- 使用对象 -->
+		<h1 :class="classObj">这是一个很大很大的h1，打到你无法想象！</h1>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				flag: true,
+				classObj: {'red':true, 'thin':true, 'active':this.flag}
+			}
+		})
+	</script>
+</body>
+</html>

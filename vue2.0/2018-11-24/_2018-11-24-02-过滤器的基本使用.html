@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>过滤器的基本使用</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+</head>
+<body>
+	<div id="app">
+		<p>{{ msg | msgFormat }}</p>
+		<p>{{ msg | msgFormat2('疯狂', '+1') }}</p>
+		<p>{{ msg | msgFormat2('疯狂', '+1') | test }}</p>
+	</div>
+	<script type="text/javascript">
+		// filter 的回调函数的第一个参数就是 msg ，不能修改，可以定义多个参数，如 msgFormat2
+		Vue.filter('msgFormat', function(data) {
+			var msg = data.replace(/单纯/g, '邪恶')
+			return msg;
+		})
+		Vue.filter('msgFormat2', function(data, arg1, arg2) {
+			var msg = data.replace(/单纯/g, arg1 + arg2)
+			return msg;
+		})
+		// 可以同时调用多个过滤器，他会按顺序逐个执行
+		Vue.filter('test', function(data) {
+			var msg = data + '============'
+			return msg;
+		})
+		// 过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器同名了，这时候优先调用私有过滤器
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '曾经，我也是一个单纯的少年，单纯的我，傻傻的问，谁是这个世界上最单纯的人'
+			},
+			methods: {
+
+			},
+			filters: {
+
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-model指令的学习</title>
+	<script type="text/javascript" src="vue2.0.js"></script>
+</head>
+<body>
+	<h3>v-bind: Model的数据绑定到View属于单向数据绑定</h3>
+	<h3>v-model: 实现了双向数据绑定，修改model的数据会影响view的数据，修改view的数据也会影响model的数据</h3>
+	<div id="app">
+		<h4>{{msg}}</h4>
+		<input type="text" name="username" v-model="msg">
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '大家都是好学生，爱敲代码，爱学习，爱思考，没瑕疵！'
+			}
+		})
+	</script>
+</body>
+</html>

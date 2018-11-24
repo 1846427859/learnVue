@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="vue2.0.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="浪起来" @click="lang">
+		<input type="button" value="低调" @click="stop">
+		<h4>{{ msg }}</h4>
+	</div>	
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '猥琐发育，别浪~~~~',
+				intervalid: null
+			},
+			methods: {
+				lang() {
+					if(this.intervalid != null) return;
+					this.intervalid = setInterval( () => {
+						var start = this.msg.substring(0, 1);
+						var end = this.msg.substring(1);
+						this.msg = end + start;
+					}, 400);
+				},
+				stop() {
+					clearInterval(this.intervalid);
+					this.intervalid = null;
+				}
+			}
+		});
+	</script>
+</body>
+</html>

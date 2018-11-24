@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>v-for循环对象数组</title>
+	<script type="text/javascript" src="vue2.0.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p v-for="(val, key, i) in user">{{ i }} --- {{ key }} --- {{ val }}</p>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				user: {id: 1, name: '托尼~仕达克', gender: '男'}
+			}
+		})
+	</script>
+</body>
+</html>

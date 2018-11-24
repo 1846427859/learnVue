@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件修饰符</title>
+</head>
+<style type="text/css">
+	div {
+		width: 150px;
+		height:100px;
+		background-color: red;
+	}
+</style>
+<script type="text/javascript" src="vue2.0.js"></script>
+<body>
+	<!-- 点击按钮时会冒泡调用div上面的点击事件，可以使用.stop阻止冒泡 -->
+	<h4>.stop</h4>
+	<div id="app" @click="divHandler">
+		<input type="button" name="" value="戳他" @click.stop="btnHandler">
+	</div>
+	<!-- 阻止默认行为.prevent
+	<h4>.prevent</h4> -->
+	<a href="http://www.baidu.com" @click.prevent="lickClick">有问题，先去百度</a>
+	<!-- .capture捕获触发事件的机制，点击按钮时先触发div button -->
+	<h4>.capture</h4>
+	<div id="app" @click.capture="divHandler">
+		<input type="button" name="" value="戳他" @click="btnHandler">
+	</div>
+	<!-- .self 限制只有点击该元素时才触发事件，不会被动触发 -->
+	<h4>.self</h4>
+	<div id="app" @click.self="divHandler">
+		<input type="button" name="" value="戳他" @click="btnHandler">
+	</div>
+	<!-- .once 只触发一次 -->
+	<h4>.once</h4>
+	<div id="app" @click.once="divHandler">
+		<input type="button" name="" value="戳他" @click="btnHandler">
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: "#app",
+			data: {},
+			methods: {
+				divHandler() {
+					alert('divHandler...')
+				},
+				btnHandler() {
+					alert('btnHandler...')
+				},
+				lickClick() {
+					alert('超链接点击事件')
+				}
+			}
+		});
+	</script>
+</body>
+</html>
