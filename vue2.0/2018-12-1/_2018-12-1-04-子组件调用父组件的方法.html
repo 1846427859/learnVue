@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>子组件调用父组件的方法</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+<body>
+	<div id="app">
+		<!-- 1, 把父组件 vm 的 show 方法传递给子组件 mylogin -->
+		<mylogin @show="show"></mylogin>
+	</div>
+	<template id="temp">
+		<div>
+			<!-- 2, 调用子组件的方法 here -->
+			<button type="button" class="btn btn-default" @click="here">点击这里</button>
+		</div>
+	</template>
+	<script type="text/javascript">
+		var mylogin = {
+			props: [],
+			template: '#temp',
+			data() {
+				return {
+					msg: '这是子组件的内容'
+				}
+			},
+			filters: {
+				
+			},
+			directives: {},
+			methods: {
+				here() {
+					// 3, 调用父组件传递过来的方法 show 并把子组件的信息传给父组件
+					this.$emit('show', this.msg)
+				}
+			},
+			components: {}
+		}
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				
+			},
+			methods: {
+				show(data) {
+					alert(data)
+				}
+			},
+			components: {
+				mylogin: mylogin
+			}
+		})
+	</script>
+</body>
+</html>

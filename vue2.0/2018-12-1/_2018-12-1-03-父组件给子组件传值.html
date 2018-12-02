@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>父组件给子组件传值</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+<body>
+	<div id="app">
+		<mylogin v-bind:parent-msg="msg"></mylogin>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				msg: '这是父组件的数据'
+			},
+			methods: {
+			},
+			components: {
+				mylogin: {
+					props: ['parentMsg'],
+					template: '<h1>mylogin {{ name |changeName }} --> {{ parentMsg }}</h1>',
+					data() {
+						return {
+							name: '黎育枨'
+						}
+					},
+					filters: {
+						changeName(name) {
+							return `登录的人是： ${name} `
+						}
+					},
+					directives: {},
+					methods: {},
+					components: {}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

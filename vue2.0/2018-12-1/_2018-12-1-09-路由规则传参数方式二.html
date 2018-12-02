@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>路由规则传参数方式二</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-router.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+
+<body>
+	<div id="app">
+		<router-link to="/login/10/ls">登录</router-link>
+		<router-link to="/register">注册</router-link>
+		<router-view></router-view>
+	</div>
+	<script type="text/javascript">
+		var login = {
+			template: '<h3>登录组件 -- {{ $route.params.id }} -- {{ $route.params.name }}</h3>'
+		}
+		var register = {
+			template: '<h3>注册组件</h3>'
+		}
+		var router = new VueRouter({
+			routes: [
+				{ path: '/', redirect: '/login' },
+				{ path: '/login/:id/:name', component: login },
+				{ path: '/register', component: register },
+			]
+		})
+		var vm = new Vue({
+			el: '#app',
+			data: {
+
+			},
+			methods: {
+
+			},
+			router
+		})
+	</script>
+</body>
+
+</html>

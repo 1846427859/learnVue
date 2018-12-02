@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>复习小球动画</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+	<style>
+		#ball {
+			margin-top: 15px;
+			width: 15px;
+			height: 15px;
+			background-color: red;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button type="button" class="btn btn-default" v-on:click="flag = !flag">播放动画</button>
+		<transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+			<div id="ball" v-show="flag"></div>
+		</transition>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				flag: false
+			},
+			methods: {
+				beforeEnter: function(el) {
+					el.style.transform = 'translate(0, 0)'
+				},
+				enter: function(el, done) {
+					el.offsetHeight
+					el.style.transform = 'translate(150px, 150px)'
+					el.style.transition = 'all 1s ease'
+					done()
+				},
+				afterEnter: function(el) {
+					this.flag = !this.flag;
+				}
+			},
+		})
+	</script>
+</body>
+</html>

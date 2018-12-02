@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>发表评论案例</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+<body>
+	<div id="app">
+		<cmt @getdata="getData"></cmt>
+		<ul class="list-group">
+			<li class="list-group-item" v-for="(item, index) in list" :key="item.id">
+				<span class="badge">发表人：{{ item.name }}</span>
+				{{ item.content }}
+			</li>
+		</ul>
+	</div>
+	<template id="temp">
+		<div class="form-group">
+			<div class="form-group">
+				<label>姓名：</label>
+				<input type="text" class="form-control" v-model="name">
+			</div>
+			<div class="form-group">
+				<label>内容：</label>
+				<textarea class="form-control" v-model="content"></textarea>
+			</div>
+			<input type="button" value="发表评论" class="btn btn-primary" @click="send">
+		</div>
+	</template>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				list: [
+					{ id: Date.now(), name: '李白', content: '天生我材必有用'},
+					{ id: Date.now(), name: '曹操', content: '对酒当歌人生几何'},
+					{ id: Date.now(), name: '屈原', content: '路漫漫其修远兮，吾将上下而求索'},
+				]
+			},
+			methods: {
+				getData(data) {
+					alert(data)
+					this.list.push(data)
+				}
+			},
+			components: {
+				cmt: {
+					template: '#temp',
+					data() {
+						return {
+							name: '',
+							content: ''
+						}
+					},
+					methods: {
+						send() {
+							var data = {id: Date.now(), name: this.name, content: this.content}
+							console.log(data)
+							this.$emit('getdata', data)
+						}
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

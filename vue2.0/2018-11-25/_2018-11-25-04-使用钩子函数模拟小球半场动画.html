@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>使用钩子函数模拟小球半场动画</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+	<style>
+		.ball {
+			width: 15px;
+			height: 15px;
+			border-radius: 50%;
+			background-color:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="加入购物车" @click="flag = !flag">
+		<transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+			<div class="ball" v-if="flag"></div>
+		</transition>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				flag: false
+			},
+			methods: {
+				beforeEnter(el) {
+					el.style.transform = 'translate(0, 0)'
+				},
+				enter(el, done) {
+					el.offsetWidth
+					el.style.transform = 'translate(150px, 450px)'
+					el.style.transition = 'all 1s ease'
+					done()
+				},
+				afterEnter(el) {
+					this.flag = !this.flag
+				}
+			}
+		})
+	</script>
+</body>
+</html>

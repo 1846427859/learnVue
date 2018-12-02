@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>控制组件切换方式二</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+	<style>
+		.v-enter,
+		.v-leave-to {
+			opacity: 0;
+			transform: translateX(100px)
+		}
+		.v-enter-active,
+		.v-leave-active {
+			transition: all 1s ease;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<a href="" @click.prevent="componentId = 'login'">登录</a>
+		<a href="" @click.prevent="componentId = 'regist'">注册</a>
+		<transition mode="out-in">
+			<component :is="componentId"></component>
+		</transition>
+	</div>
+	<script type="text/javascript">
+		Vue.component('login', {
+			template: '<h1>登录页面</h1>',
+		})
+		Vue.component('regist', {
+			template: '<h1>注册页面</h1>',
+		})
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				componentId: 'login'
+			},
+			methods: {
+			}
+		})
+	</script>
+</body>
+
+</html>

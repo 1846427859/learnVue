@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>创建Vue组件的方式三</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+
+<body>
+	<div id="app">
+		<login></login>
+	</div>
+	<template id="login">
+		<h1>这是私有的Login组件</h1>
+	</template>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+			},
+			methods: {
+			},
+			components: {
+				login: {
+					template: '#login'
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

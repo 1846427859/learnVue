@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>创建Vue组件的方式二</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+
+<body>
+	<div id="app">
+		<mycomponent></mycomponent>
+	</div>
+	<script type="text/javascript">
+		Vue.component('mycomponent', {
+			// 不论是哪种方式创建出来的组件，组建的 template 的内容只能有一个根元素
+			template: '<div><h1>这是一个使用Vue组件创建的H1</h1><span>1234</span></div>'
+		})
+		var vm = new Vue({
+			el: '#app',
+			data: {
+			},
+			methods: {
+			}
+		})
+	</script>
+</body>
+
+</html>

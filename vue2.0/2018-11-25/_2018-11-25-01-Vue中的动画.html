@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>使用Vue的动画</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<style>
+		.v-enter,
+		.v-leave-to {
+			opacity: 0;
+			transform: translateX(200px);
+		}
+		.v-enter-active,
+		.v-leave-active {
+			transition: all 0.8s ease;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<input type="button" value="Toggle" @click="flag = !flag">
+		<transition>
+			<h3 v-if="flag">这是一个H3！</h3>
+		</transition>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				flag: false
+			},
+			methods: {
+
+			}
+		})
+	</script>
+</body>
+</html>

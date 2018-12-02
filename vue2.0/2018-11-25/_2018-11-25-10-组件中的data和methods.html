@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>组件中的data和methods</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+</head>
+
+<body>
+	<div id="app">
+		<login></login>
+	</div>
+	<script type="text/javascript">
+		// 组件中的data和实例中的data不一样，实例中的data是一个对象，但是组件中的data必须是一个function
+		// 组件中的data除了必须是一个function之外，还必须返回一个对象
+		// 组件中的data和实例中的data的使用方式完全一样
+		Vue.component('login', {
+			template: '<h1>这是私有的Login组件{{msg}}</h1>',
+			data: function() {
+				return {
+					msg: '这是组件中定义的data数据'
+				}
+			}
+		})
+		var vm = new Vue({
+			el: '#app',
+			data: {
+			},
+			methods: {
+			}
+		})
+	</script>
+</body>
+
+</html>

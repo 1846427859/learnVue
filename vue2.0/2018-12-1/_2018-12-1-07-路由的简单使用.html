@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>路由的简单使用</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<script type="text/javascript" src="vue-router.js"></script>
+	<script type="text/javascript" src="vue-resource.js"></script>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="../animate.css">
+	<style>
+		.myactive {
+			font-size: 18px;
+		}
+		.v-enter,
+		.v-leave-to {
+			opacity: 0;
+			transform: translateX(140px);
+		}
+		.v-enter-active,
+		.v-leave-active {
+			transition: all 1s ease;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<div class="form-inline">
+			<a href="#/login" class="btn btn-primary">登录</a>
+			<a href="#/register"class="btn btn-primary">注册</a>
+			<!-- 为了写 a 标签时不使用 # Vue 提供了router-link 标签，默认渲染一个a标签，使用tag属性指定渲染标签 -->
+			<router-link to="/login" class="btn btn-primary" tag="span">router-link登录</router-link>
+			<router-link to="/register" class="btn btn-primary">router-link注册</router-link>
+		</div>
+		<transition mode="out-in">
+			<router-view></router-view>
+		</transition>
+	</div>
+	<script type="text/javascript">
+		var login = {
+			template: '<h3>登录组件</h3>'
+		}
+		var register = {
+			template: '<h3>注册组件</h3>'
+		}
+		var routerObj = new VueRouter({
+			routes: [
+				// 使用redirect指定跳转到某个组件
+				{path: '/', redirect: '/login'},
+				{path: '/login', component: login},
+				{path: '/register', component: register}
+			],
+			// 设置选中的 router-link 高亮显示的class类
+			linkActiveClass: 'myactive'
+		})
+		
+		var vm = new Vue({
+			el: '#app',
+			data: {
+
+			},
+			methods: {
+
+			},
+			router: routerObj
+		})
+	</script>
+</body>
+</html>
